@@ -1,0 +1,21 @@
+﻿{
+  "correios": {
+    "IdFieldCEP": "endereco",
+    "IdbtnPesquisa": "btn_pesquisar",
+    "XPathTabelaRua": "//table[@id='resultado-DNEC']//td[@data-th='Logradouro/Nome']",
+    "XPathTabelaCidade": "//table[@id='resultado-DNEC']//td[@data-th='Localidade/UF']",
+    "XPathTabelaCEP": "//table[@id='resultado-DNEC']//td[@data-th='CEP']",
+    "XPathResultTitle": "//h5[text()='Resultado da Busca por Endereço ou CEP']",
+    "XPathLinkCorreios": "//a[@class='logo']",
+    "IdInputRastreamento": "objetos",
+    "ClassNameIconSearchRastreamento": "ic-busca-out",
+    "IdCaptchImg": "//div[@class='controle']/img",
+    "IdNewBusca": "btn_nbusca"
+  },
+
+  "linkCorreios": {
+    "IdInputRastreamento": "id",
+    "XPathBtnEnviar": "//input[@value='Enviar']",
+    "XPathResultRastreamento": "//span[contains(text(),'Rastreamento Correios de Objeto')]"
+  }
+}

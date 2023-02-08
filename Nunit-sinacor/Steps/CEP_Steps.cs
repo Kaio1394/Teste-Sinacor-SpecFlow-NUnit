@@ -8,12 +8,12 @@ namespace MyNamespace
     public class CEP_Steps
     {
         private readonly ScenarioContext _scenarioContext;
-        private Pages _pages;
+        CorreiosPage _pages;
 
         public CEP_Steps(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
-            _pages = new Pages();
+            _pages = new CorreiosPage();
         }
 
         [BeforeTestRun] 
@@ -27,32 +27,31 @@ namespace MyNamespace
         [Given(@"Navegar para o site dos correios")]
         public void GivenNavegarParaOSiteDosCorreios()
         {
-            _pages.correioPage.NavigateToSiteCEP();
+            _pages.NavigateToSiteCEP();
         }
 
         [Given(@"Clique em buscar CEP")]
         public void GivenCliqueEmBuscarCEP()
         {
-            _pages.correioPage.ClickBuscarCEP();
-        }
-
+            _pages.ClickBuscarCEP();
+        }       
         [Given(@"Preencher o campo do CEP com valor ""(.*)""")]
         public void GivenPreencherOCampoDoCEPComValor(string CEP)
         {
-            _pages.correioPage.FillFieldCEP(CEP);
+            _pages.FillFieldCEP(CEP);
         }
         [Then(@"O campo ""(.*)"" da tabela retornará o valor ""(.*)""")]
         public void ThenOCampoDaTabelaRetornaraOValor(string field, string value)
         {
-            _pages.correioPage.WaitUntilTitleResultIsPresent();
+            _pages.WaitUntilTitleResultIsPresent();
             string? getTableValue = null;
             switch (field.ToLower())
             {
                 case "street":
-                    getTableValue = _pages.correioPage.GetTableResultSearch("street");
+                    getTableValue = _pages.GetTableResultSearch("street");
                     break;
                 case "uf":
-                    getTableValue = _pages.correioPage.GetTableResultSearch("uf");
+                    getTableValue = _pages.GetTableResultSearch("uf");
                     break;
                 default:
                     break;
@@ -62,7 +61,7 @@ namespace MyNamespace
         [Then(@"A página irá retornar a mensagem ""(.*)""")]
         public void ThenAPaginaIraRetornarAMensagem(string msg)
         {
-            Assert.IsTrue(_pages.correioPage.TextResultRastreamento(msg));
+            Assert.IsTrue(_pages.TextResultRastreamento(msg));
         }
 
     }

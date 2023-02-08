@@ -1,52 +1,49 @@
 ﻿using Nunit_sinacor.Pages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace MyNamespace
 {
     [Binding]
-    public class LinkCorreios
+    public class LinkCorreiosSteps
     {
         private readonly ScenarioContext _scenarioContext;
-        private Pages _pages;
+        private LinkCorreiosPage _page;
+
+        public LinkCorreiosSteps(ScenarioContext scenarioContext)
+        {
+            _scenarioContext = scenarioContext;
+            _page = new LinkCorreiosPage();
+        }
 
         [AfterTestRun]
         public static void SalvarArquivoTexto()
         {
             Nunit_sinacor.Helpers.Helper.Close();
         }
-        public LinkCorreios(ScenarioContext scenarioContext)
-        {
-            _scenarioContext = scenarioContext;
-            _pages = new Pages();
-        }
+        
         [Given(@"Que eu acesse o site LinkCorreios")]
         public void GivenQueEuAcesseOSiteLinkCorreios()
         {
-            _pages.linkCorreiosPage.NavigateToSiteLinkCorreios();
+            _page.NavigateToSiteLinkCorreios();
         }
 
         [When(@"Preencha o campo de código de rastreamento com o valor ""(.*)""")]
         public void WhenPreenchaOCampoDeCodigoDeRastreamentoComOValor(string cod)
         {
-            _pages.linkCorreiosPage.FillFieldCodRastreamento(cod);
+            _page.FillFieldCodRastreamento(cod);
         }
 
         [When(@"Clique no botão de pesquisar")]
         public void WhenCliqueNoBotaoDePesquisar()
         {
-            _pages.linkCorreiosPage.ClickSearchRastreamento();
+            _page.ClickSearchRastreamento();
         }
 
         [Then(@"A página retornará com o texto ""(.*)""")]
         public void ThenAPaginaRetornaraComOTexto(string txt)
         {
-            _pages.linkCorreiosPage.WaitUntilResultRastreamento();
-            bool rastreamentoIndisponivel = _pages.linkCorreiosPage.TextExistInPage(txt);
+            _page.WaitUntilResultRastreamento();
+            bool rastreamentoIndisponivel = _page.TextExistInPage(txt);
             Assert.IsTrue(rastreamentoIndisponivel);
         }
     }

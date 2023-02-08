@@ -1,11 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using Tesseract;
 
 namespace Nunit_sinacor.Helpers
@@ -83,7 +79,7 @@ namespace Nunit_sinacor.Helpers
 
         public void Click(By by)
         {
-            driver.FindElement(by).Click();
+            _driver.FindElement(by).Click();
         }
 
         public string GetText(By by)
@@ -131,40 +127,6 @@ namespace Nunit_sinacor.Helpers
         public static void Close()
         {
             _driver.Close();
-        }
-        private bool IsAlertPresent()
-        {
-            try
-            {
-                _driver.SwitchTo().Alert();
-                return true;
-            }
-            catch (NoAlertPresentException)
-            {
-                return false;
-            }
-        }
-
-        private string CloseAlertAndGetItsText()
-        {
-            try
-            {
-                IAlert alert = driver.SwitchTo().Alert();
-                string alertText = alert.Text;
-                if (acceptNextAlert)
-                {
-                    alert.Accept();
-                }
-                else
-                {
-                    alert.Dismiss();
-                }
-                return alertText;
-            }
-            finally
-            {
-                acceptNextAlert = true;
-            }
-        }
+        }           
     }
 }

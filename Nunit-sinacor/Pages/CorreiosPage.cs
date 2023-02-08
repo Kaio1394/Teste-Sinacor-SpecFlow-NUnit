@@ -1,29 +1,25 @@
-﻿using Nunit_sinacor.Helpers;
+﻿using Nunit_sinacor.data;
+using Nunit_sinacor.Helpers;
 using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Nunit_sinacor.Pages
 {
+    
     public class CorreiosPage : Helper
     {
-        public string LCorreios = "https://buscacepinter.correios.com.br/app/endereco/index.php";
-        private string IdFieldCEP = "endereco";
-        private string IdbtnPesquisa = "btn_pesquisar";
-        private string XPathTabelaRua = "//table[@id='resultado-DNEC']//td[@data-th='Logradouro/Nome']";
-        private string XPathTabelaCidade = "//table[@id='resultado-DNEC']//td[@data-th='Localidade/UF']";
-        private string XPathTabelaCEP = "//table[@id='resultado-DNEC']//td[@data-th='CEP']";
-        private string XPathResultTitle = "//h5[text()='Resultado da Busca por Endereço ou CEP']";
-        private string XPathLinkCorreios = "//a[@class='logo']";
-        private string IdInputRastreamento = "objetos";
-        private string ClassNameIconSearchRastreamento = "ic-busca-out";
-        private string IdCaptchImg = "//div[@class='controle']/img";
-        public string PathToSaveImg = @"C:\temp\";
-
-        public string IdNewBusca = "btn_nbusca";
+        private string LCorreios =                          "https://buscacepinter.correios.com.br/app/endereco/index.php";
+        private string PathToSaveImg =                      @"C:\temp\";
+        private string IdFieldCEP =                         ReadJson.ReadFileJson("Locators", "correios", "IdFieldCEP");
+        private string IdbtnPesquisa =                      ReadJson.ReadFileJson("Locators", "correios", "IdbtnPesquisa");
+        private string XPathTabelaRua =                     ReadJson.ReadFileJson("Locators", "correios", "XPathTabelaRua");
+        private string XPathTabelaCidade =                  ReadJson.ReadFileJson("Locators", "correios", "XPathTabelaCidade");
+        private string XPathTabelaCEP =                     ReadJson.ReadFileJson("Locators", "correios", "XPathTabelaCEP");
+        private string XPathResultTitle =                   ReadJson.ReadFileJson("Locators", "correios", "XPathResultTitle");
+        private string XPathLinkCorreios =                  ReadJson.ReadFileJson("Locators", "correios", "XPathLinkCorreios");
+        private string IdInputRastreamento =                ReadJson.ReadFileJson("Locators", "correios", "IdInputRastreamento");
+        private string ClassNameIconSearchRastreamento  =   ReadJson.ReadFileJson("Locators", "correios", "ClassNameIconSearchRastreamento");
+        private string IdCaptchImg =                        ReadJson.ReadFileJson("Locators", "correios", "IdCaptchImg");
+        private string IdNewBusca =                         ReadJson.ReadFileJson("Locators", "correios", "IdNewBusca");
 
         public CorreiosPage() : base(null) { }
 
@@ -38,7 +34,7 @@ namespace Nunit_sinacor.Pages
             this.SendKeys(By.Id(IdInputRastreamento), cod);
         }
         public string GetTextCaptcha()
-        {
+        {           
             var pathImg = this.SaveImage(IdCaptchImg, PathToSaveImg);
             return this.GetTextByImg(pathImg);
         }
@@ -84,6 +80,7 @@ namespace Nunit_sinacor.Pages
         }
         public void ClickBuscarCEP()
         {
+            var teste = IdbtnPesquisa;
             this.Click(By.Id(IdbtnPesquisa));
         }
         public bool TextResultRastreamento(string text)

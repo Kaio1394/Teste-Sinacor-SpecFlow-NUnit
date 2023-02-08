@@ -1,20 +1,15 @@
-﻿using Nunit_sinacor.Helpers;
+﻿using Nunit_sinacor.data;
+using Nunit_sinacor.Helpers;
 using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Nunit_sinacor.Pages
 {
     public class LinkCorreiosPage : Helper
     {
-        public string LinkCorreios = "https://www.linkcorreios.com.br/";
-        private string IdInputRastreamento = "id";
-        public string XPathBtnEnviar = "//input[@value='Enviar']";
-
-        public string XPathResultRastreamento = "//span[contains(text(),'Rastreamento Correios de Objeto')]";
+        private string LinkCorreios =               "https://www.linkcorreios.com.br/";
+        private string IdInputRastreamento =        ReadJson.ReadFileJson("Locators", "linkCorreios", "IdInputRastreamento");
+        private string XPathBtnEnviar =             ReadJson.ReadFileJson("Locators", "linkCorreios", "XPathBtnEnviar");
+        private string XPathResultRastreamento =    ReadJson.ReadFileJson("Locators", "linkCorreios", "XPathResultRastreamento");
 
         public LinkCorreiosPage() : base(null) { }
 
@@ -55,7 +50,7 @@ namespace Nunit_sinacor.Pages
             catch (Exception)
             {
 
-                throw new Exception("Não foi possível navegar na url");
+                throw new Exception("Não foi possível navegar para url");
             }
         }
     }
