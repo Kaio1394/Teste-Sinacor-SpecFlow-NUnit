@@ -5,12 +5,12 @@ using TechTalk.SpecFlow;
 namespace MyNamespace
 {
     [Binding]
-    public class CEP_Steps
+    public class CorreiosSteps
     {
         private readonly ScenarioContext _scenarioContext;
         CorreiosPage _pages;
 
-        public CEP_Steps(ScenarioContext scenarioContext)
+        public CorreiosSteps(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
             _pages = new CorreiosPage();

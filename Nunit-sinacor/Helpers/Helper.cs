@@ -8,7 +8,6 @@ namespace Nunit_sinacor.Helpers
 {
     public class Helper
     {
-        private bool acceptNextAlert = true;
         public static IWebDriver driver { get { return _driver; } }
         private static IWebDriver _driver;
 

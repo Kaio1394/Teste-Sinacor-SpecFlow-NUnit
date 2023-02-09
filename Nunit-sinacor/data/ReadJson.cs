@@ -9,6 +9,10 @@ namespace Nunit_sinacor.data
         {
             dynamic? _jsonFile = JsonConvert.DeserializeObject(
                 File.ReadAllText(@"..\..\..\data\"+file+".json"));
+            if(_jsonFile== null)
+            {
+                throw new Exception("Locator não encontrado.");
+            }
             return _jsonFile[page][locator];
         }
     }
